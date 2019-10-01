@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 from .models import *
 
@@ -20,13 +20,27 @@ def publishers(request):
 
 
 def book(request, num):
-    return render(request, "book.html", {"book": Book.objects.get(id=num)})
+    try:
+        book = Book.objects.get(id=num)
+    except Book.DoesNotExist:
+        return HttpResponse("<h1>The specified book does not exist!</h1>")
+    return render(request, "book.html", {"book": book})
 
 
 def author(request, num):
-    author_books = list(Book.objects.filter(authors=Author.objects.get(id=num)))
-    return render(request, "author.html", {"author": Author.objects.get(id=num), "books": author_books})
+    try:
+        author = Author.objects.get(id=num)
+        author_books = list(Book.objects.filter(authors=author))
+    except Book.DoesNotExist:
+        return HttpResponse("<h1>The specified book does not exist!</h1>")
+    except Exception:
+        return HttpResponse("<h1>Unexpected error!</h1>")
+    return render(request, "author.html", {"author": author, "books": author_books})
 
 
 def publisher(request, num):
-    return render(request, "publisher.html", {"publisher": Publisher.objects.get(id=num)})
+    try:
+        publisher = Publisher.objects.get(id=num)
+    except Publisher.DoesNotExist:
+        return HttpResponse("<h1>The specified publisher does not exist!</h1>")
+    return render(request, "publisher.html", {"publisher": publisher})
