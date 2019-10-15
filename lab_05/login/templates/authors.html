@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<h1>Books</h1>
+<ul>
+    {% for author in authors %}
+        <li><a href="{% url 'author' author.id %}" target="_blank">{{ author.name }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Detail</title>
+</head>
+<body>
+<h1>Book Detail</h1>
+<ul>
+    <li>{{ book.title }}</li>
+    <li><a href="{% url 'publisher' book.publisher_id %}" target="_blank">{{ book.publisher }}</a></li>
+    {% for author in book.authors.iterator %}
+        <li><a href="{% url 'author' author.id %}" target="_blank">{{ author }}</a></li>
+    {% endfor %}
+    <li>{{ book.date }}</li>
+</ul>
+</body>
+</html>

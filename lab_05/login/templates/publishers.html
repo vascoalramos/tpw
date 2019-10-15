@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publishers</title>
+</head>
+<body>
+<h1>Publishers</h1>
+<ul>
+    {% for pub in publishers %}
+    <li><a href="{% url 'publisher' pub.id %}" target="_blank">{{ pub.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
