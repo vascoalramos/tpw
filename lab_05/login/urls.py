@@ -1,3 +1,4 @@
+from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from login import views
@@ -12,4 +13,6 @@ urlpatterns = [
     path("publishers", views.publishers, name="publishers"),
     path("publisher/<int:num>", views.publisher, name="publisher"),
     path("publisher-query", views.publisher_query, name="publisher-query"),
+    path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
+    path("logout/", auth_views.LogoutView.as_view(next_page="/"), name="logout"),
 ]

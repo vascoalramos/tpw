@@ -1,7 +1,6 @@
 import Animal from "./Animal";
 import Mammal from "./Mammal";
 import Reptile from "./Reptile";
-import Feline from "./Feline";
 import Cat from "./Cat";
 
 let animal1 = new Animal("Earth");
